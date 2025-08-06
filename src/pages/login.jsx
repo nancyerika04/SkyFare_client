@@ -43,19 +43,27 @@ const handleGoogleLogin = async()=>{
   }
 }
   return (
-    <div>
-      <h1> Login </h1>
-      <form onSubmit={handleLogin}>
-        <input 
+    <div className='bg-white border-2 w-100 justify-self-center m-4'>
+      <h1 className='font-bold text-2xl text-center  m-10' > Login </h1>
+      <form onSubmit={handleLogin} className=' m-10 text-center'>
+        <input className='border-2'
         type="email" placeholder="Email" value={email} onChange = {(e)=>setEmail(e.target.value)} required/>
-        <input 
+        <br />
+        <br />
+        <input className='border-2'
         type="password" placeholder="Password" value={password} onChange = {(e)=>setPassword(e.target.value)} required/>
-        <button type = "submit">{isnewuser?"SignUp":"Login"}</button>
-
+        <br />
+        <br />
+        <button type = "submit" className='bg-green-700 border-2 rounded hover:bg-green-950'>{isnewuser?"SignUp":"Login"}</button>
+        <br />
       </form>
       <button onClick={handleGoogleLogin}>Login with Google</button>
-      <p>{isnewuser ? "Already have an account": "Don't have an account?"}{''}</p>
-      <button type='button' onClick={()=>setIsnewuser(!isnewuser)}>{isnewuser?"Login":"SignUp"}</button>
+
+      <div className='text-center flex'>
+        <p>{isnewuser ? "Already have an account": "Don't have an account?"}{''}</p>
+        <button type='button' className ='text-center hover:underline' onClick={()=>setIsnewuser(!isnewuser)}>{isnewuser?"Login":" SignUp"}</button>
+      </div>
+
       {error && <p> {error} </p>}
     </div>
   )
