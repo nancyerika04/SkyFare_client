@@ -36,7 +36,8 @@ const handleGoogleLogin = async()=>{
   const provider =new GoogleAuthProvider();
   try{
     await signInWithPopup(auth,provider);
-    alert("Logged in with Google.")
+    alert("Logged in with Google.");
+    navigate('/');
   }
   catch(err){
     setError(err.message);
@@ -45,6 +46,7 @@ const handleGoogleLogin = async()=>{
   return (
     <div className='bg-white border-2 w-100 justify-self-center m-4'>
       <h1 className='font-bold text-2xl text-center  m-10' > Login </h1>
+
       <form onSubmit={handleLogin} className=' m-10 text-center'>
         <input className='border-2'
         type="email" placeholder="Email" value={email} onChange = {(e)=>setEmail(e.target.value)} required/>
@@ -54,14 +56,20 @@ const handleGoogleLogin = async()=>{
         type="password" placeholder="Password" value={password} onChange = {(e)=>setPassword(e.target.value)} required/>
         <br />
         <br />
-        <button type = "submit" className='bg-green-700 border-2 rounded hover:bg-green-950'>{isnewuser?"SignUp":"Login"}</button>
+        <button type = "submit" className='bg-blue-500 border-2 rounded hover:bg-blue-700'>{isnewuser?"SignUp":"Login"}</button>
         <br />
+        <br />
+        <div>
+        <hr className=''/>
+        <p>or</p>
+      </div>
+      <br />
+        <button onClick={handleGoogleLogin} className='border-2 rounded-3xl p-0.5 '>Login with Google</button>
       </form>
-      <button onClick={handleGoogleLogin}>Login with Google</button>
-
-      <div className='text-center flex'>
-        <p>{isnewuser ? "Already have an account": "Don't have an account?"}{''}</p>
-        <button type='button' className ='text-center hover:underline' onClick={()=>setIsnewuser(!isnewuser)}>{isnewuser?"Login":" SignUp"}</button>
+      
+      <div className='text-center flex text-xs justify-self-center m-4 p-0'>
+        <p>{isnewuser ? "Already have an account": "Don't have an account? "}{''}</p>
+        <button type='button' className ='text-center hover:underline' onClick={()=>setIsnewuser(!isnewuser)}>{isnewuser?"Login" : "SignUp"}</button>
       </div>
 
       {error && <p> {error} </p>}
