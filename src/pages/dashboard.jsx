@@ -1,9 +1,19 @@
 import React from 'react'
+import SearchForm from '../components/searchForm'
+import PicesFilters from '../components/pricesFilters'
+import FlightResult from '../components/flightResult'
+import  Recommandation from '../components/recommandation'
+
 
 export default function dashboard() {
   return (
     <div>
-      <h1>This is dashboard page</h1>
+      
+      <SearchForm/>
+      <PicesFilters/>
+      <FlightResult/>
+      <Recommandation/>
+
     </div>
   )
 }
