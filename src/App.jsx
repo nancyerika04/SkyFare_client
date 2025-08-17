@@ -7,6 +7,7 @@ import Results from './pages/results';
 import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Chatbot from './components/chatbot';
 
 
 function App() {
@@ -21,6 +22,8 @@ function App() {
           <Route path = "/results" element = {<Results/>}/>
           <Route path = "/login" element = {<Login/>}/>
       </Routes>
+
+      <Chatbot/>
     
       <Footer/>
     </>
