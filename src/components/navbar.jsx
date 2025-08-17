@@ -17,25 +17,26 @@ export default function Navbar() {
     }
   };
   return (
-    <nav className="bg-blue-300 text-black">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">
-          SkyFare
+    <nav className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-800 text-white shadow-lg border-b border-blue-500">
+      <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+        <Link to="/" className="text-2xl font-bold hover:text-blue-200 transition-colors duration-300 flex items-center space-x-2">
+          <span className="text-3xl">✈️</span>
+          <span>SkyFare</span>
         </Link>
-        <div className="flex space-x-6">
-          <Link to="/" className="hover:text-gray-200">
+        <div className="flex space-x-8">
+          <Link to="/" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
             Home
           </Link>
-          <Link to="/results" className="hover:text-gray-200">
+          <Link to="/results" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
             Results
           </Link>
-          <Link to="/dashboard" className="hover:text-gray-200">
+          <Link to="/dashboard" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
             Dashboard
           </Link>
           {user ? (
-            <button className="hover:text-gray-200" onClick={handleLogout}>Logout</button>
+            <button className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10" onClick={handleLogout}>Logout</button>
           ) : (
-            <Link to="/login" className="hover:text-gray-200">
+            <Link to="/login" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
               Login
             </Link>
           )}

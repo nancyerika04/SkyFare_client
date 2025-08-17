@@ -16,43 +16,81 @@ export default function searchForm() {
   console.log(searchdata);
 }
   return (
-    <div className='bg-white m-8 min-h-screen flex justify-center items-center px-4'>
-      <form onSubmit={handleSubmit} className='space-y-4 rounded-xl shadow-lg border-gray-100 w-2/4 max-w-md'>
-        <h2 className='text-2xl text-center font-semibold mb-6 '>Search flights</h2>
-
-        <div className='mb-4'>
-          <label className='font-medium text-gray-700'>From:</label>
-          <input type="text" placeholder="City" value={from} onChange={(e)=>setFrom(e.target.value)} className='border rounded-md p-2 mt-1 border-gray-400 w-full'></input>
+    <div className='bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 max-w-2xl mx-auto'>
+      <form onSubmit={handleSubmit} className='space-y-6'>
+        <div className='text-center mb-8'>
+          <h2 className='text-3xl font-bold text-gray-800 mb-2'>Search flights</h2>
+          <p className='text-gray-600'>Find the best deals for your journey</p>
         </div>
 
-        <div className='mb-4'>
-          <label className='font-medium text-gray-700'>To:</label>
-          <input type="text" placeholder="City" value={to} onChange={(e)=>setTo(e.target.value)} className='border rounded-md p-2 mt-1 border-gray-400 w-full'></input>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <div className='space-y-2'>
+            <label className='block text-sm font-semibold text-gray-700'>From:</label>
+            <input 
+              type="text" 
+              placeholder="City" 
+              value={from} 
+              onChange={(e)=>setFrom(e.target.value)} 
+              className='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-gray-700 placeholder-gray-400'
+            />
+          </div>
+
+          <div className='space-y-2'>
+            <label className='block text-sm font-semibold text-gray-700'>To:</label>
+            <input 
+              type="text" 
+              placeholder="City" 
+              value={to} 
+              onChange={(e)=>setTo(e.target.value)} 
+              className='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-gray-700 placeholder-gray-400'
+            />
+          </div>
         </div>
 
-        <div >
-          <label className='font-medium text-gray-700'>Depart:</label>
-          <input type="date" value={depart} onChange={(e)=>setDepart(e.target.value)} className='border rounded-md p-2 mt-1 border-gray-400 w-full'></input>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+          <div className='space-y-2'>
+            <label className='block text-sm font-semibold text-gray-700'>Depart:</label>
+            <input 
+              type="date" 
+              value={depart} 
+              onChange={(e)=>setDepart(e.target.value)} 
+              className='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-gray-700'
+            />
+          </div>
+
+          <div className='space-y-2'>
+            <label className='block text-sm font-semibold text-gray-700'>Return:</label>
+            <input 
+              type="date" 
+              value={returndate} 
+              onChange={(e)=>setReturndate(e.target.value)} 
+              className='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-gray-700'
+            />
+          </div>
         </div>
 
-        <div>
-          <label className='font-medium text-gray-700'>Return:</label>
-          <input type="date" value={returndate} onChange={(e)=>setReturndate(e.target.value)} className='border rounded-md p-2 mt-1 border-gray-400 w-full'></input>
-        </div>
-
-        <div>
-          <label className='font-medium text-gray-700'>Flight class:</label>
-          <select value={flightclass} onChange={(e)=>setFlightclass(e.target.value)} className='border rounded-md p-2 mt-1 border-gray-400 w-full'>
-            <option> Economy </option>
-            <option> Premium </option>
-            <option> Bussiness </option>
-            <option> First </option>
+        <div className='space-y-2'>
+          <label className='block text-sm font-semibold text-gray-700'>Flight class:</label>
+          <select 
+            value={flightclass} 
+            onChange={(e)=>setFlightclass(e.target.value)} 
+            className='w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 text-gray-700'
+          >
+            <option value="">Select class</option>
+            <option value="economy">Economy</option>
+            <option value="premium">Premium Economy</option>
+            <option value="business">Business</option>
+            <option value="first">First Class</option>
           </select>
         </div>
 
-        <button type="submit" className='bg-gray-600 rounded hover:bg-gray-900 p-1.5 items-center w-full text-white'>Search</button>
+        <button 
+          type="submit" 
+          className='w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-4 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200'
+        >
+          Search Flights
+        </button>
       </form>
-
     </div>
   )
 }
