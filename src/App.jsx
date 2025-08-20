@@ -8,6 +8,7 @@ import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Chatbot from './components/chatbot';
+import GeminiTest from './components/gemini'
 
 
 function App() {
@@ -15,7 +16,7 @@ function App() {
   return (
     <>
       <Navbar/>
-
+      <GeminiTest/>
       <Routes>
           <Route path = "/" element = {<Home/>}/>
           <Route path = "/dashboard" element = {<Dashboard/>}/>
