@@ -27,9 +27,6 @@ export default function Navbar() {
           <Link to="/" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
             Home
           </Link>
-          <Link to="/results" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
-            Results
-          </Link>
           <Link to="/dashboard" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10">
             Dashboard
           </Link>

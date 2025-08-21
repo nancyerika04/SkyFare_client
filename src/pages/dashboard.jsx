@@ -3,9 +3,10 @@ import SearchForm from '../components/searchForm'
 import PicesFilters from '../components/pricesFilters'
 import FlightResult from '../components/flightResult'
 import  Recommandation from '../components/recommandation'
-
+import { useState } from 'react'
 
 export default function dashboard() {
+  const [filterflight, setFilterflight] = useState([]);
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 py-8">
       <div className="container mx-auto px-6">
@@ -18,7 +19,7 @@ export default function dashboard() {
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">New Search</h2>
-              <SearchForm/>
+              <SearchForm onSearchResults={setFilterflight}/>
             </div>
             
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
@@ -30,7 +31,7 @@ export default function dashboard() {
           <div className="lg:col-span-3 space-y-6">
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Flight Results</h2>
-              <FlightResult/>
+              <FlightResult flights={filterflight}/>
             </div>
             
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">

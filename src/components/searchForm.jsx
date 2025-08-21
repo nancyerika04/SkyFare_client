@@ -1,20 +1,44 @@
 import React from 'react'
 import { useState } from 'react'
 
-export default function searchForm() {
+export default function searchForm({onSearchResults}) {
   const[from, setFrom] = useState('');
   const[to, setTo] = useState('');
   const[depart, setDepart] = useState('');
   const[returndate, setReturndate] = useState('');
   const[flightclass, setFlightclass] = useState('');
-  const handleSubmit =(e) =>{
-  e.preventDefault();
+  const[filterflight, setFilterflight] = useState([]);
+  
+  const handleSubmit =async(e)=>{
+    e.preventDefault();
+    try{
+      const response = await fetch('../../flights_data.json');
+      const data = await response.json();
 
-  const searchdata = {
-    from, to, depart, returndate, flightclass
-  };
-  console.log(searchdata);
-}
+      const results = data.filter((flight)=>{
+      const matchfrom = from ? flight.from.toLowerCase() === from.toLowerCase():true;
+      const matchto = to ? flight.to.toLowerCase() === to.toLowerCase():true;
+      const matchDepart = depart? flight.depart_date.toLowerCase() === depart.toLowerCase():true;
+      const matchReturn = returndate? flight.return_date.toLowerCase() === returndate.toLowerCase():true;
+      const matchClass = flightclass? flight.flight_class.toLowerCase() === flightclass.toLowerCase():true;
+      return matchfrom && matchto && matchDepart && matchReturn && matchClass;
+      });
+      onSearchResults(results);
+      console.log('filterflight', results);
+      console.log('flight data', data);
+      const search_data = {
+        from, 
+        to,
+        depart, 
+        returndate,
+        flightclass
+      }
+      console.log('input',search_data);
+    }
+    catch(error){
+      console.error('error fetching', error);
+    }
+  }
   return (
     <div className='bg-white rounded-3xl shadow-2xl border border-gray-100 p-8 max-w-2xl mx-auto'>
       <form onSubmit={handleSubmit} className='space-y-6'>
