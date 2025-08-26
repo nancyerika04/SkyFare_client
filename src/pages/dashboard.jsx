@@ -4,6 +4,8 @@ import PicesFilters from '../components/pricesFilters'
 import FlightResult from '../components/flightResult'
 import  Recommandation from '../components/recommandation'
 import { useState } from 'react'
+import FlightSummary from '../components/flightSummary'
+import flightSummary from './../components/flightSummary';
 
 export default function dashboard() {
   const [filterflight, setFilterflight] = useState([]);
@@ -37,6 +39,9 @@ export default function dashboard() {
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
               <h2 className="text-xl font-semibold text-gray-800 mb-4">Recommendations</h2>
               <Recommandation/>
+            </div>
+            <div className='bg-white rounded-2xl shadow-lg p-6 border border-gray-100'>
+              <FlightSummary/>
             </div>
           </div>
         </div>
