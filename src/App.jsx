@@ -7,6 +7,7 @@ import Login from './pages/login';
 import Dashboard from './pages/dashboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Chatbot from './components/chatbot';
+import ProtectedRoute from './components/protectedRoute';
 
 
 function App() {

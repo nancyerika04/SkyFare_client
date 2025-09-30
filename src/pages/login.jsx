@@ -20,7 +20,9 @@ const handleLogin = async(e)=>{
   try{
       if(isnewuser){
         await createUserWithEmailAndPassword(auth, email, password);
-        alert("Sign up successful !")
+        await signInWithEmailAndPassword(auth, email, password);
+        alert("Sign up successful !");
+        window.location.href = "https://buy.stripe.com/test_3cI7sNdCK5ij15hfu92oE04";
       }
       else{
         await signInWithEmailAndPassword(auth, email, password);
@@ -40,9 +42,16 @@ const handleGoogleLogin = async()=>{
   const provider =new GoogleAuthProvider();
   setIsLoading(true);
   try{
-    await signInWithPopup(auth,provider);
-    alert("Logged in with Google.");
-    navigate('/');
+    const result  = await signInWithPopup(auth,provider);
+    const isNew = result?.additionalUserInfo?.isNewUser;
+    if (isNew){
+      alert("New user ");
+      window.location.href = "https://buy.stripe.com/test_3cI7sNdCK5ij15hfu92oE04";
+    }
+    else {
+      alert("Logged in with Google.");
+      navigate('/');
+    }
   }
   catch(err){
     setError(err.message);
