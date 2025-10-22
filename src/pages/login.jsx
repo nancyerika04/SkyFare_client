@@ -13,6 +13,33 @@ const [isnewuser, setIsnewuser] = useState('');
 const [isLoading, setIsLoading] = useState(false);
 const navigate = useNavigate();
 
+const backendUrl = "http://localhost:5000";
+
+const checkPremiumStatus = async(email) => {
+  console.log(email);
+  const res = await fetch(`${backendUrl}/check-premium`, {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body : JSON.stringify({email}),
+  });
+
+  const data = await res.json();
+  console.log(data.premium);
+    return data.premium;
+};
+
+const createStripeSession = async(email) => {
+   const res = await fetch(`${backendUrl}/create-checkout-session`, {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body : JSON.stringify({email}),
+  });
+  const data = await res.json();
+  if (data.url){
+    window.location.href = data.url;
+  }
+};
+
 const handleLogin = async(e)=>{
   e.preventDefault();
   setError('');
@@ -22,13 +49,20 @@ const handleLogin = async(e)=>{
         await createUserWithEmailAndPassword(auth, email, password);
         await signInWithEmailAndPassword(auth, email, password);
         alert("Sign up successful !");
-        window.location.href = "https://buy.stripe.com/test_3cI7sNdCK5ij15hfu92oE04";
+        await createStripeSession(email);
       }
       else{
         await signInWithEmailAndPassword(auth, email, password);
+        const isPremium  = await checkPremiumStatus(email);
+        if(isPremium){
+          navigate("/");
+        }
+        else {
+          await createStripeSession(email);
+        }
         alert("Login successful!");
       }
-      navigate("/");
+      
   }
   catch(err)
   {
@@ -43,14 +77,21 @@ const handleGoogleLogin = async()=>{
   setIsLoading(true);
   try{
     const result  = await signInWithPopup(auth,provider);
+    const user = result.user;
     const isNew = result?.additionalUserInfo?.isNewUser;
     if (isNew){
       alert("New user ");
-      window.location.href = "https://buy.stripe.com/test_3cI7sNdCK5ij15hfu92oE04";
+      await createStripeSession(user.email);
     }
     else {
-      alert("Logged in with Google.");
-      navigate('/');
+      const isPremium = await checkPremiumStatus(user.email);
+      if (isPremium){
+        navigate("/");
+      }
+      else{
+        await createStripeSession(user.email);
+      }
+      console.log("Log in with google.");
     }
   }
   catch(err){
