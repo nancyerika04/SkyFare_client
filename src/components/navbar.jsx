@@ -39,6 +39,10 @@ export default function Navbar() {
           <Link to="/dashboard" className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10" onClick={(e)=>handleProtectedNavigation(e,'/')}>
             Dashboard
           </Link>
+
+          <Link to ="/billing"  className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10" onClick={(e)=> handleProtectedNavigation(e,"/billing")}> 
+            Billing </Link>
+
           {user ? (
             <button className="hover:text-blue-200 transition-colors duration-300 font-medium px-3 py-2 rounded-lg hover:bg-white/10" onClick={handleLogout}>Logout</button>
           ) : (

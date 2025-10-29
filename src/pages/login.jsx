@@ -34,7 +34,7 @@ const createStripeSession = async(email) => {
     headers:{"Content-Type":"application/json"},
     body : JSON.stringify({email}),
   });
-  const data = await res.json();
+  const data = await res.json()
   if (data.url){
     window.location.href = data.url;
   }

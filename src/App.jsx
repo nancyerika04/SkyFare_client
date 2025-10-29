@@ -8,6 +8,7 @@ import Dashboard from './pages/dashboard';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Chatbot from './components/chatbot';
 import ProtectedRoute from './components/protectedRoute';
+import Billing from './components/billing';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path = "/" element = {<Home/>}/>
           <Route path = "/dashboard" element = {<Dashboard/>}/>
           <Route path = "/login" element = {<Login/>}/>
+          <Route path = "/billing" element = {<Billing/>}/>
       </Routes>
 
       <Chatbot/>
